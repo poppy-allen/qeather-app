@@ -12,6 +12,17 @@
 <body>
     <div class="container">
         <div class="weather-app">
+            <form id="search-form">
+                <div class="row">
+                    <div class="col-9">
+                    <input type="search" placeholder="Enter your city..." class="form-control">
+                   </div>
+                 <div class="col-3">
+                     <input type="submit" value="search"/> 
+                </div>
+                </div>
+            </form>
+
     <h1 id="city"></h1>
     <ul>
         <li id="date">
@@ -21,7 +32,7 @@
     </ul>
     <div class="row">
         <div class="col-6">
-            <img src="images/sunny.svg" alt="sunny"/>
+            <img src="images/sunny.svg" alt="sunny" id="icon"/>
             <strong id="temp"></strong>
             <span class="units">°C | °F</span>
         </div>
