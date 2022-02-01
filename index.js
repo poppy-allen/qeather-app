@@ -36,6 +36,7 @@ function displayTemperature(response) {
     humidityPercent.innerHTML = response.data.main.humidity;
     windSpeed.innerHTML = Math.round(response.data.wind.speed);
     dateTime.innerHTML = displayDate(response.data.dt * 1000);
+    weatherIcon.setAttribute("src", `images/${response.data.weather[0].icon}.svg`);
 }
 
 let apiKey = "f25acbf494c6e1996ef769070be0a2e9";
