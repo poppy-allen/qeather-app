@@ -1,4 +1,5 @@
-function displayDate(timestamp) {
+function formatDateString(utcTimeInSeconds, offsetInSeconds) {
+    const timestamp = (utcTimeInSeconds + offsetInSeconds) * 1000;
     let date = new Date(timestamp);
     let days = [
         "Sunday", 
@@ -22,7 +23,6 @@ function displayDate(timestamp) {
     }
 
 function displayTemperature(response) {
-    console.log(response.data);
     let temperature = document.querySelector("#temp");
     let location = document.querySelector("#city");
     let weatherCondition = document.querySelector("#condition");
@@ -35,17 +35,35 @@ function displayTemperature(response) {
     weatherCondition.innerHTML = response.data.weather[0].main;
     humidityPercent.innerHTML = response.data.main.humidity;
     windSpeed.innerHTML = Math.round(response.data.wind.speed);
-    dateTime.innerHTML = displayDate(response.data.dt * 1000);
+    dateTime.innerHTML = formatDateString(response.data.dt, response.data.timezone);
     weatherIcon.setAttribute("src", `images/${response.data.weather[0].icon}.svg`);
 }
 
 function search(city) {
     let apiKey = "f25acbf494c6e1996ef769070be0a2e9";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayTemperature);
+    axios.get(apiUrl).then(displayTemperature).catch(clearValues);   
+    
 }
 
 function handleSubmit() {
     let cityInput = document.querySelector("#city-name");
     search(cityInput.value);
+}
+
+function clearValues(){
+    let temperature = document.querySelector("#temp");
+    let location = document.querySelector("#city");
+    let weatherCondition = document.querySelector("#condition");
+    let humidityPercent = document.querySelector("#humidity");
+    let windSpeed = document.querySelector("#wind");
+    let dateTime = document.querySelector("#date");
+    let weatherIcon = document.querySelector("#icon");
+    temperature.innerHTML = '';
+    location.innerHTML = '';
+    weatherCondition.innerHTML = '';
+    humidityPercent.innerHTML = '';
+    windSpeed.innerHTML = '';
+    dateTime.innerHTML = '';
+    weatherIcon.setAttribute("src", ``);
 }
