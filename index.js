@@ -69,10 +69,14 @@ function clearValues(){
     weatherIcon.setAttribute("src", ``);
 }
 
-function convertUnits() {
+function convertFahrenheit() {
     let convertFahrenheit = (celsiusTemp * 9/5) + 32;
     let temperature = document.querySelector("#temp");
     temperature.innerHTML = Math.round(convertFahrenheit);
     }
-    
+
+function convertCelsius() {
+    let temperature = document.querySelector("#temp");
+    temperature.innerHTML = Math.round(celsiusTemp);
+}
     let celsiusTemp = null;
