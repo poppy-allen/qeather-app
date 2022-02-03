@@ -30,7 +30,8 @@ function displayTemperature(response) {
     let windSpeed = document.querySelector("#wind");
     let dateTime = document.querySelector("#date");
     let weatherIcon = document.querySelector("#icon");
-    temperature.innerHTML = Math.round (response.data.main.temp);
+    celsiusTemp = response.data.main.temp;
+    temperature.innerHTML = Math.round (celsiusTemp);
     location.innerHTML = response.data.name;
     weatherCondition.innerHTML = response.data.weather[0].main;
     humidityPercent.innerHTML = response.data.main.humidity;
@@ -67,3 +68,11 @@ function clearValues(){
     dateTime.innerHTML = '';
     weatherIcon.setAttribute("src", ``);
 }
+
+function convertUnits() {
+    let convertFahrenheit = (celsiusTemp * 9/5) + 32;
+    let temperature = document.querySelector("#temp");
+    temperature.innerHTML = Math.round(convertFahrenheit);
+    }
+    
+    let celsiusTemp = null;
