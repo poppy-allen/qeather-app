@@ -79,4 +79,5 @@ function convertCelsius() {
     let temperature = document.querySelector("#temp");
     temperature.innerHTML = Math.round(celsiusTemp);
 }
+
     let celsiusTemp = null;
