@@ -30,6 +30,7 @@ function displayTemperature(response) {
     let windSpeed = document.querySelector("#wind");
     let dateTime = document.querySelector("#date");
     let weatherIcon = document.querySelector("#icon");
+    displayForecast();
     celsiusTemp = response.data.main.temp;
     temperature.innerHTML = Math.round (celsiusTemp);
     location.innerHTML = response.data.name;
@@ -78,6 +79,27 @@ function convertFahrenheit() {
 function convertCelsius() {
     let temperature = document.querySelector("#temp");
     temperature.innerHTML = Math.round(celsiusTemp);
+}
+
+function displayForecast() {
+    let weeklyForecast = document.querySelector("#forecast");
+    let forecastDays = ["Thu", "Fri", "Sat", "Sun"];
+    let forecastHTML = `<div class="row">`;
+    forecastDays.forEach(function (day) { 
+    forcastHTML = forecastHTML + `
+    <div class="col-2">
+      <div class="weather-forecast-date">$(day)</div>
+      <img src="images/ 11d.svg" alt="#" width="40" />
+      <div class="weather-forecast-temp">
+        <span class="weather-forecast-temp-max"> 18°C </span>
+        | <span class="weather-forecast-temp-min">12°C </span>
+      </div>
+    </div>`;
+    });
+    
+    forecastHTML = forecastHTML + `</div>`;
+    weeklyForecast.innerHTML = forecastHTML;
+    console.log(forecastHTML);
 }
 
     let celsiusTemp = null;
