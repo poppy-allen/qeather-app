@@ -1,6 +1,9 @@
+body {
+    background: #EDF5FD;
+}
+
 h1 {
     color: #878787;
-    font-family: Arial, sans-serif;
     font-size: 24px;
     font-weight: 100;
     line-height: 28px;
@@ -15,7 +18,6 @@ ul {
 li {
     list-style: none;
     color: #878787;
-    font-family: Arial, sans-serif;
     font-size: 16px;
     font-weight: 100;
     line-height: 19px; 
@@ -35,17 +37,21 @@ li {
 
 .weather-app {
     padding: 20px;
-    border: 1px solid #dadde1;
-    border-radius: 5px;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
+    font-family: Helvetica, sans-serif;
 }
 
 #icon{
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
-.weather-app strong {
+.weather-app .temp {
     font-size: 64px;
     font-weight: 400;
+    color: #878787;
 }
 
 .horizontal-flex{
@@ -65,4 +71,40 @@ li {
     margin-top: 20px;
     text-align: center;
     font-size: 13px;
+}
+
+.weather-app .form-control {
+    padding: 15px 20px;
+    background: #EDF5FD;
+    border: none;
+    border-radius: 6px;
+}
+
+.btn {
+    background: #56a0ee;
+    padding: 15px 0;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: #358FE9;
+}
+
+.link {
+    color: #56a0ee;
+}
+
+.link:hover {
+    color: #358FE9;
+}
+
+.fahrenheit{
+    text-decoration: none;
+}
+
+.celsius {
+    text-decoration: none;
 }

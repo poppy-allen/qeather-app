@@ -33,7 +33,7 @@
             </div>
             <div class="col-3">
               <input
-                value="search"
+                value="Search"
                 class="btn btn-primary w-100"
                 id="city-input"
                 autocomplete="off"
@@ -52,11 +52,11 @@
           <div class="col-5 horizontal-flex">
             <div class="vertical-center">
               <img id="icon" />
-              <strong id="temp"></strong>
+              <strong class="temp" id="temp"></strong>
             </div>
             <div class="units">
-              <a href="#" id="unit-celius" onclick="convertCelsius()">°C</a> |
-              <a href="#" id="unit-fahrenheit" onclick="convertFahrenheit()"
+              <a class="celsius" href="#" id="unit-celsius" onclick="convertCelsius()">°C</a> |
+              <a class="fahrenheit" href="#" id="unit-fahrenheit" onclick="convertFahrenheit()"
                 >°F</a
               >
             </div>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <small>
-        <a href="https://github.com/poppy-allen/weather-app" target="_blank">
+        <a class="link" href="https://github.com/poppy-allen/weather-app" target="_blank">
           Open-source code</a
         >
         by Poppy Allen
