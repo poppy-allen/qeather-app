@@ -22,6 +22,14 @@ function formatDateString(utcTimeInSeconds, offsetInSeconds) {
     return `${day} ${hours}:${minutes}`; 
     }
 
+    function formatDay(timestamp) {
+        let date = new Date(timestamp * 1000);
+        let day = date.getDay();
+        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      
+        return days[day];
+      }
+
 function displayTemperature(response) {
     let temperature = document.querySelector("#temp");
     let location = document.querySelector("#city");
@@ -30,7 +38,6 @@ function displayTemperature(response) {
     let windSpeed = document.querySelector("#wind");
     let dateTime = document.querySelector("#date");
     let weatherIcon = document.querySelector("#icon");
-    displayForecast();
     celsiusTemp = response.data.main.temp;
     temperature.innerHTML = Math.round (celsiusTemp);
     location.innerHTML = response.data.name;
@@ -39,6 +46,8 @@ function displayTemperature(response) {
     windSpeed.innerHTML = Math.round(response.data.wind.speed);
     dateTime.innerHTML = formatDateString(response.data.dt, response.data.timezone);
     weatherIcon.setAttribute("src", `images/${response.data.weather[0].icon}.svg`);
+
+    getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -81,24 +90,34 @@ function convertCelsius() {
     temperature.innerHTML = Math.round(celsiusTemp);
 }
 
-function displayForecast() {
+function displayForecast(response) {
+    let forecast = response.data.daily;
+
     let weeklyForecast = document.querySelector("#forecast");
-    let forecastDays = ["Thu", "Fri", "Sat", "Sun"];
+
     let forecastHTML = `<div class="row">`;
-    forecastDays.forEach(function (day) { 
+    forecast.forEach(function (forecastDay, index) { 
+        if (index < 6) {
     forecastHTML = forecastHTML + `
     <div class="col-2">
-      <div class="weather-forecast-date">$(day)</div>
+      <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
       <img src="images/ 11d.svg" alt="#" width="40" />
       <div class="weather-forecast-temp">
-        <span class="weather-forecast-temp-max"> 18°C </span>
-        | <span class="weather-forecast-temp-min">12°C </span>
+        <span class="weather-forecast-temp-max">${Math.round(forecastDay.temp.max)}°</span>
+        | <span class="weather-forecast-temp-min">${Math.round(forecastDay.temp.min)}°</span>
       </div>
     </div>`;
+    }
     });
     forecastHTML = forecastHTML + `</div>`;
     weeklyForecast.innerHTML = forecastHTML;
-    console.log(forecastHTML);
+ 
 }
 
+function getForecast(coordinates) {
+    console.log(coordinates);
+    let apiKey = "f25acbf494c6e1996ef769070be0a2e9";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayForecast);
+}
     let celsiusTemp = null;
