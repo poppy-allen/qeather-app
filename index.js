@@ -92,27 +92,32 @@ function convertCelsius() {
 
 function displayForecast(response) {
     let forecast = response.data.daily;
-
+  
     let weeklyForecast = document.querySelector("#forecast");
-
+  
     let forecastHTML = `<div class="row">`;
-    forecast.forEach(function (forecastDay, index) { 
-        if (index < 6) {
-    forecastHTML = forecastHTML + `
-    <div class="col-2">
-      <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
-      <img src="images/ 11d.svg" alt="#" width="40" />
-      <div class="weather-forecast-temp">
-        <span class="weather-forecast-temp-max">${Math.round(forecastDay.temp.max)}°</span>
-        | <span class="weather-forecast-temp-min">${Math.round(forecastDay.temp.min)}°</span>
-      </div>
-    </div>`;
-    }
+    forecast.forEach(function (forecastDay, index) {
+      if (index > 0 && index < 7) {
+        forecastHTML =
+          forecastHTML +
+          `
+      <div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <img src="images/${forecastDay.weather[0].icon}.svg" alt="#" width="40" />
+        <div class="weather-forecast-temp">
+          <span class="weather-forecast-temp-max">${Math.round(
+            forecastDay.temp.max
+          )}°</span>
+          | <span class="weather-forecast-temp-min">${Math.round(
+            forecastDay.temp.min
+          )}°</span>
+        </div>
+      </div>`;
+      }
     });
     forecastHTML = forecastHTML + `</div>`;
     weeklyForecast.innerHTML = forecastHTML;
- 
-}
+  }
 
 function getForecast(coordinates) {
     console.log(coordinates);
