@@ -2,11 +2,11 @@ function formatDateString(utcTimeInSeconds, offsetInSeconds) {
     const timestamp = (utcTimeInSeconds + offsetInSeconds) * 1000;
     let date = new Date(timestamp);
     let days = [
-        "Sunday", 
-        "Monday", 
-        "Tuesday", 
-        "Wednesday", 
-        "Thursday", 
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
         "Friday",
         "Saturday"
     ];
@@ -19,16 +19,16 @@ function formatDateString(utcTimeInSeconds, offsetInSeconds) {
     if (minutes < 10) {
         minutes = `0${minutes}`;
     }
-    return `${day} ${hours}:${minutes}`; 
-    }
+    return `${day} ${hours}:${minutes}`;
+}
 
-    function formatDay(timestamp) {
-        let date = new Date(timestamp * 1000);
-        let day = date.getDay();
-        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      
-        return days[day];
-      }
+function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    return days[day];
+}
 
 function displayTemperature(response) {
     let temperature = document.querySelector("#temp");
@@ -39,7 +39,7 @@ function displayTemperature(response) {
     let dateTime = document.querySelector("#date");
     let weatherIcon = document.querySelector("#icon");
     celsiusTemp = response.data.main.temp;
-    temperature.innerHTML = Math.round (celsiusTemp);
+    temperature.innerHTML = Math.round(celsiusTemp);
     location.innerHTML = response.data.name;
     weatherCondition.innerHTML = response.data.weather[0].main;
     humidityPercent.innerHTML = response.data.main.humidity;
@@ -53,8 +53,8 @@ function displayTemperature(response) {
 function search(city) {
     let apiKey = "f25acbf494c6e1996ef769070be0a2e9";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayTemperature).catch(clearValues);   
-    
+    axios.get(apiUrl).then(displayTemperature).catch(clearValues);
+
 }
 
 function handleSubmit() {
@@ -62,7 +62,7 @@ function handleSubmit() {
     search(cityInput.value);
 }
 
-function clearValues(){
+function clearValues() {
     let temperature = document.querySelector("#temp");
     let location = document.querySelector("#city");
     let weatherCondition = document.querySelector("#condition");
@@ -80,10 +80,10 @@ function clearValues(){
 }
 
 function convertFahrenheit() {
-    let convertFahrenheit = (celsiusTemp * 9/5) + 32;
+    let convertFahrenheit = (celsiusTemp * 9 / 5) + 32;
     let temperature = document.querySelector("#temp");
     temperature.innerHTML = Math.round(convertFahrenheit);
-    }
+}
 
 function convertCelsius() {
     let temperature = document.querySelector("#temp");
@@ -92,32 +92,32 @@ function convertCelsius() {
 
 function displayForecast(response) {
     let forecast = response.data.daily;
-  
+
     let weeklyForecast = document.querySelector("#forecast");
-  
+
     let forecastHTML = `<div class="row">`;
     forecast.forEach(function (forecastDay, index) {
-      if (index > 0 && index < 7) {
-        forecastHTML =
-          forecastHTML +
-          `
+        if (index > 0 && index < 7) {
+            forecastHTML =
+                forecastHTML +
+                `
       <div class="col-2">
         <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
         <img src="images/${forecastDay.weather[0].icon}.svg" alt="#" width="50" />
         <div class="weather-forecast-temp">
           <span class="weather-forecast-temp-max">${Math.round(
-            forecastDay.temp.max
-          )}°</span>
+                    forecastDay.temp.max
+                )}°</span>
            <span class="weather-forecast-temp-min">${Math.round(
-            forecastDay.temp.min
-          )}°</span>
+                    forecastDay.temp.min
+                )}°</span>
         </div>
       </div>`;
-      }
+        }
     });
     forecastHTML = forecastHTML + `</div>`;
     weeklyForecast.innerHTML = forecastHTML;
-  }
+}
 
 function getForecast(coordinates) {
     console.log(coordinates);
@@ -125,4 +125,4 @@ function getForecast(coordinates) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayForecast);
 }
-    let celsiusTemp = null;
+let celsiusTemp = null;
