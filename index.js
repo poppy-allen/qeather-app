@@ -103,12 +103,12 @@ function displayForecast(response) {
           `
       <div class="col-2">
         <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
-        <img src="images/${forecastDay.weather[0].icon}.svg" alt="#" width="40" />
+        <img src="images/${forecastDay.weather[0].icon}.svg" alt="#" width="50" />
         <div class="weather-forecast-temp">
           <span class="weather-forecast-temp-max">${Math.round(
             forecastDay.temp.max
           )}°</span>
-          | <span class="weather-forecast-temp-min">${Math.round(
+           <span class="weather-forecast-temp-min">${Math.round(
             forecastDay.temp.min
           )}°</span>
         </div>
