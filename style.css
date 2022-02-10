@@ -19,7 +19,6 @@ li {
     list-style: none;
     color: #878787;
     font-size: 16px;
-    font-weight: 100;
     line-height: 19px; 
 }
 
@@ -69,6 +68,16 @@ hr {
 .horizontal-flex{
     display: flex;
     flex-direction: row;
+}
+
+.humidity {
+    display: inline-block;
+    font-weight: 600; 
+}
+
+.wind {
+    display: inline-block;
+    font-weight: 600;
 }
 
 .vertical-center{
