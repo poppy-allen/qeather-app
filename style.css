@@ -70,16 +70,6 @@ hr {
     flex-direction: row;
 }
 
-.humidity {
-    display: inline-block;
-    font-weight: 600; 
-}
-
-.wind {
-    display: inline-block;
-    font-weight: 600;
-}
-
 .vertical-center{
     display: flex;
     justify-content: center;
